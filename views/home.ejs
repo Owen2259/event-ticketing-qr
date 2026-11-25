@@ -1,0 +1,8 @@
+<%- include('partials/header') %>
+<h1>Event ticketing</h1>
+<% if (user) { %>
+  <p>Welcome, <%= user.name %>.</p>
+<% } else { %>
+  <p>Please log in or register to continue.</p>
+<% } %>
+<%- include('partials/footer') %>

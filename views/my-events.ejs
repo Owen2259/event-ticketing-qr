@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<h1>My events</h1>
+<p><a href="/events/new">+ Create event</a></p>
+<% if (!events.length) { %>
+  <p>You have not created any events yet.</p>
+<% } %>
+<% events.forEach(function (e) { %>
+  <div class="card wide event">
+    <h2><%= e.name %></h2>
+    <p><%= formatDate(e.event_datetime) %> &middot; <%= e.venue %> &middot; Capacity <%= e.capacity %></p>
+    <ul>
+      <% e.ticketTypes.forEach(function (t) { %>
+        <li><%= t.name %> - <%= Number(t.price).toFixed(2) %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% }) %>
+<%- include('partials/footer') %>

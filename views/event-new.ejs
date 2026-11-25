@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<h1>Create event</h1>
+<% if (errors.length) { %>
+  <div class="errors"><ul><% errors.forEach(function (e) { %><li><%= e %></li><% }) %></ul></div>
+<% } %>
+<form method="post" action="/events" class="card wide" novalidate>
+  <label>Event name <input type="text" name="name" value="<%= form.name %>"></label>
+  <label>Venue <input type="text" name="venue" value="<%= form.venue %>"></label>
+  <div class="row">
+    <label>Date <input type="date" name="date" value="<%= form.date %>"></label>
+    <label>Time <input type="time" name="time" value="<%= form.time %>"></label>
+  </div>
+  <label>Capacity <input type="number" name="capacity" min="1" value="<%= form.capacity %>"></label>
+
+  <h2>Ticket types</h2>
+  <div id="ticket-types">
+    <% form.ticketTypes.forEach(function (t) { %>
+      <div class="ticket-row">
+        <label>Name <input type="text" name="ticket_name" value="<%= t.name %>"></label>
+        <label>Price <input type="text" name="ticket_price" value="<%= t.price %>"></label>
+      </div>
+    <% }) %>
+  </div>
+  <button type="button" id="add-ticket-type" class="secondary">+ Add ticket type</button>
+
+  <div class="actions">
+    <button type="submit">Save event</button>
+    <a href="/my-events">Cancel</a>
+  </div>
+</form>
+<script src="/create-event.js"></script>
+<%- include('partials/footer') %>
