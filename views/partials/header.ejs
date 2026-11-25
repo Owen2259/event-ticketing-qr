@@ -10,7 +10,13 @@
 <nav class="nav">
   <a class="brand" href="/">EventTix</a>
   <div class="links">
+    <a href="/events">Events</a>
+
     <% if (user) { %>
+      <% if (user.role === 'attendee') { %>
+        <a href="/my-tickets">My tickets</a>
+      <% } %>
+      
       <% if (user.role === 'organiser') { %>
         <a href="/my-events">My events</a>
         <a href="/events/new">Create event</a>

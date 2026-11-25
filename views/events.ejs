@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<h1>Upcoming events</h1>
+<% if (!events.length) { %>
+  <p>There are no upcoming events.</p>
+<% } %>
+<div class="event-grid">
+  <% events.forEach(function (event) { %>
+    <div class="card event">
+      <h2><%= event.name %></h2>
+      <p><%= formatDate(event.event_datetime) %></p>
+      <p><%= event.venue %></p>
+      <% if (event.remaining > 0) { %>
+        <p class="badge ok"><%= event.remaining %> tickets left</p>
+      <% } else { %>
+        <p class="badge full">Sold out</p>
+      <% } %>
+      <a href="/events/<%= event.id %>">View event</a>
+    </div>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>

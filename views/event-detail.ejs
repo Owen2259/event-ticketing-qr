@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<p><a href="/events">&larr; Back to events</a></p>
+<h1><%= event.name %></h1>
+<p><%= formatDate(event.event_datetime) %> &middot; <%= event.venue %></p>
+
+<% if (error) { %>
+  <div class="errors"><%= error %></div>
+<% } %>
+
+<div class="card wide">
+  <h2>Tickets</h2>
+  <% if (event.remaining > 0) { %>
+    <p class="badge ok"><%= event.remaining %> of <%= event.capacity %> remaining</p>
+  <% } else { %>
+    <p class="badge full">Sold out</p>
+  <% } %>
+
+  <% event.ticketTypes.forEach(function (type) { %>
+    <div class="ticket-option">
+      <span><strong><%= type.name %></strong> - <%= type.price.toFixed(2) %></span>
+      <% if (event.remaining > 0 && user && user.role === 'attendee') { %>
+        <form method="post" action="/events/<%= event.id %>/reserve">
+          <input type="hidden" name="ticket_type_id" value="<%= type.id %>">
+          <button type="submit">Reserve</button>
+        </form>
+      <% } %>
+    </div>
+  <% }) %>
+
+  <% if (!user) { %>
+    <p><a href="/login">Log in</a> as an attendee to reserve a ticket.</p>
+  <% } else if (user.role !== 'attendee') { %>
+    <p>Only attendees can reserve tickets.</p>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

@@ -21,3 +21,9 @@ input[type=number], input[type=date], input[type=time] { padding: 10px; border: 
 button.secondary { background: #fff; color: #2d2d2d; border: 1px solid #2d2d2d; align-self: flex-start; }
 .actions { display: flex; gap: 16px; align-items: center; }
 .event h2 { margin: 0 0 4px; }
+.event-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; margin: 0; }
+.badge.ok { background: #dcf0e0; color: #287838; }
+.badge.full { background: #fae2e2; color: #aa2828; }
+.ticket-option { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #ddd; }
+.ticket-option form { margin: 0; }

@@ -8,7 +8,6 @@ function emptyForm() {
   };
 }
 
-// Rebuilds the form from a submission so the user does not have to retype it
 function formFromInput(input) {
   const names = list(input.ticket_name).map(str);
   const prices = list(input.ticket_price).map(str);
@@ -96,7 +95,6 @@ function createEvent(db, organiserId, input) {
   );
   const insertType = db.prepare('INSERT INTO ticket_types (event_id, name, price) VALUES (?, ?, ?)');
 
-  // One transaction: either the event and all its ticket types are saved, or nothing is
   const save = db.transaction(() => {
     const eventId = Number(
       insertEvent.run(organiserId, data.name, data.venue, data.eventDatetime, data.capacity).lastInsertRowid
