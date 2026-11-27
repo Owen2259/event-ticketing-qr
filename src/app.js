@@ -5,6 +5,7 @@ const { attachUser } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const bookingRoutes = require('./routes/bookings');
+const ticketRoutes = require('./routes/tickets');
 
 function createApp(db) {
   const app = express();
@@ -31,6 +32,7 @@ function createApp(db) {
   app.use('/', authRoutes);
   app.use('/', eventRoutes);
   app.use('/', bookingRoutes);
+  app.use('/', ticketRoutes);
 
   return app;
 }

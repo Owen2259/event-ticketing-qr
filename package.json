@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Event ticketing with QR check in.",
   "main": "index.js",
-"scripts": {
-  "start": "node src/server.js",
-  "seed": "node scripts/seed.js",
-  "test": "jest"
-},
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node scripts/seed.js",
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Owen2259/event-ticketing-qr.git"
@@ -25,8 +25,7 @@
     "better-sqlite3": "^13.2.0",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
-    "express-session": "^1.19.0",
-    "qrcode": "^1.5.4"
+    "express-session": "^1.19.0"
   },
   "devDependencies": {
     "jest": "^30.5.2",

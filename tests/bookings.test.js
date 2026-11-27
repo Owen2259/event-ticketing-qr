@@ -13,7 +13,6 @@ function setup() {
   return { db, app, organiser, alice, bob };
 }
 
-
 function addEvent(db, organiserId, capacity) {
   const date = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString();
   const eventId = Number(

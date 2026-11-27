@@ -27,3 +27,8 @@ button.secondary { background: #fff; color: #2d2d2d; border: 1px solid #2d2d2d; 
 .badge.full { background: #fae2e2; color: #aa2828; }
 .ticket-option { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-top: 1px solid #ddd; }
 .ticket-option form { margin: 0; }
+.badge.active { background: #dcf0e0; color: #287838; }
+.badge.used { background: #ebebeb; color: #555; }
+.badge.cancelled { background: #fae2e2; color: #aa2828; }
+.qr { width: 200px; height: 200px; align-self: center; }
+.card p { margin: 0; }

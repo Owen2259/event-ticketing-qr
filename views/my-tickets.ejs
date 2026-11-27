@@ -7,8 +7,12 @@
   <div class="card wide">
     <h2><%= ticket.event_name %></h2>
     <p><%= formatDate(ticket.event_datetime) %> &middot; <%= ticket.venue %></p>
-    <p><%= ticket.ticket_type %> ticket &middot; Status: <%= ticket.status %></p>
+    <p><%= ticket.ticket_type %> ticket &middot; <span class="badge <%= ticket.status %>"><%= ticket.status %></span></p>
     <p>Code: <strong><%= ticket.code %></strong></p>
+    <% if (ticket.status === 'active') { %>
+      <img class="qr" src="/tickets/<%= ticket.code %>/qr.png" alt="QR code for ticket <%= ticket.code %>">
+      <a href="/tickets/<%= ticket.code %>/qr.png" download="ticket-<%= ticket.code %>.png">Download QR code</a>
+    <% } %>
   </div>
 <% }) %>
 <%- include('partials/footer') %>
