@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const bookingRoutes = require('./routes/bookings');
 const ticketRoutes = require('./routes/tickets');
+const checkinRoutes = require('./routes/checkin');
 
 function createApp(db) {
   const app = express();
@@ -33,6 +34,7 @@ function createApp(db) {
   app.use('/', eventRoutes);
   app.use('/', bookingRoutes);
   app.use('/', ticketRoutes);
+  app.use('/', checkinRoutes);
 
   return app;
 }

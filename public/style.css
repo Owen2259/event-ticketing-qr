@@ -32,3 +32,8 @@ button.secondary { background: #fff; color: #2d2d2d; border: 1px solid #2d2d2d; 
 .badge.cancelled { background: #fae2e2; color: #aa2828; }
 .qr { width: 200px; height: 200px; align-self: center; }
 .card p { margin: 0; }
+select { padding: 10px; border: 1px solid #999; border-radius: 4px; font-size: 1rem; }
+.result { max-width: 420px; margin-top: 16px; padding: 14px 18px; border-radius: 8px; border: 2px solid; }
+.result p { margin: 4px 0 0; }
+.result-ok { background: #dcf0e0; border-color: #287838; color: #287838; }
+.result-fail { background: #fae2e2; border-color: #aa2828; color: #aa2828; }

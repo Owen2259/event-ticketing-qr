@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+<h1>Check-in</h1>
+
+<% if (!events.length) { %>
+  <p>You have no events yet. <a href="/events/new">Create an event</a></p>
+<% } else { %>
+  <form method="post" action="/checkin" class="card" novalidate>
+    <label>Event
+      <select name="event_id">
+        <% events.forEach(function (event) { %>
+          <option value="<%= event.id %>" <%= String(event.id) === selectedEventId ? 'selected' : '' %>><%= event.name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Ticket code
+      <input type="text" name="code" autofocus autocomplete="off" placeholder="e.g. A7K2-9QX4">
+    </label>
+    <button type="submit">Check in</button>
+  </form>
+<% } %>
+
+<% if (result) { %>
+  <div class="result <%= result.ok ? 'result-ok' : 'result-fail' %>">
+    <strong><%= result.ok ? 'VALID' : 'REJECTED' %></strong>
+    <p><%= result.message %></p>
+    <% if (result.attendeeName) { %>
+      <p><%= result.attendeeName %> - <%= result.ticketType %></p>
+    <% } %>
+    <% if (result.checkedInAt) { %>
+      <p>Checked in at <%= formatDate(result.checkedInAt) %></p>
+    <% } %>
+  </div>
+<% } %>
+<%- include('partials/footer') %>
