@@ -95,7 +95,7 @@ No QR code library is used. The QR code generator ("src/services/qr-code.js") an
 
 I used Claude, an AI assistant, while building this project. It helped with the project and helped me with the code when i struggled. I wrote, ran, tested, and debugged the code myself. No code was copied from other projects.
 
-Known limitations
+# Known limitations
 
 - Sessions are kept in memory, so everyone is logged out when the server restarts.
 - The QR generator supports one size (up to 14 characters), which is enough for the 9-character ticket codes.
