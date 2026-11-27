@@ -3,7 +3,7 @@ const { createDb } = require('../src/db/database');
 const { createApp } = require('../src/app');
 const { registerUser } = require('../src/services/auth');
 
-// Creates a fresh in-memory database and app with one organiser and two attendees
+// Creates a fresh in memory database and app with one organiser and two attendees
 function setup() {
   const db = createDb(':memory:');
   const app = createApp(db);
@@ -27,7 +27,7 @@ function addEvent(db, organiserId, capacity, daysAway = 10) {
   return { eventId, ticketTypeId };
 }
 
-// Returns a browser-like agent that is already logged in
+// Returns a browser like agent that is already logged in
 async function loginAs(app, email) {
   const agent = request.agent(app);
   await agent.post('/login').type('form').send({ email, password: 'Password123' }).expect(302);
