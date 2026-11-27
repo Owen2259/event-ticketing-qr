@@ -11,18 +11,16 @@
   <a class="brand" href="/">EventTix</a>
   <div class="links">
     <a href="/events">Events</a>
-
     <% if (user) { %>
       <% if (user.role === 'attendee') { %>
         <a href="/my-tickets">My tickets</a>
       <% } %>
-      
       <% if (user.role === 'organiser') { %>
         <a href="/my-events">My events</a>
         <a href="/events/new">Create event</a>
+        <a href="/dashboard">Dashboard</a>
         <a href="/checkin">Check-in</a>
       <% } %>
-      
       <span class="who"><%= user.name %> (<%= user.role %>)</span>
       <form method="post" action="/logout"><button type="submit" class="linklike">Log out</button></form>
     <% } else { %>

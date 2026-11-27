@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<h1>Organiser dashboard</h1>
+
+<div class="summary">
+  <div class="card"><span>Tickets sold</span><span class="number"><%= totals.sold %></span></div>
+  <div class="card"><span>Checked in</span><span class="number"><%= totals.checkedIn %></span></div>
+  <div class="card"><span>Remaining</span><span class="number"><%= totals.remaining %></span></div>
+</div>
+
+<% if (!events.length) { %>
+  <p>You have no events yet. <a href="/events/new">Create an event</a></p>
+<% } else { %>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Event</th><th>Date</th><th>Capacity</th><th>Sold</th><th>Checked in</th><th>Remaining</th></tr>
+      </thead>
+      <tbody>
+        <% events.forEach(function (event) { %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= formatDate(event.event_datetime) %></td>
+            <td><%= event.capacity %></td>
+            <td><%= event.sold %></td>
+            <td><%= event.checked_in %></td>
+            <td><%= event.remaining %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+<%- include('partials/footer') %>

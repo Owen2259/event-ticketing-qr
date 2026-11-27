@@ -1,8 +1,10 @@
 <%- include('partials/header') %>
 <h1>Event ticketing</h1>
-<% if (user) { %>
-  <p>Welcome, <%= user.name %>.</p>
+<% if (!user) { %>
+  <p>Browse <a href="/events">upcoming events</a>, or <a href="/login">log in</a> or <a href="/register">register</a> to reserve tickets or run events.</p>
+<% } else if (user.role === 'attendee') { %>
+  <p>Welcome, <%= user.name %>. <a href="/events">Browse events</a> or see <a href="/my-tickets">your tickets</a>.</p>
 <% } else { %>
-  <p>Please log in or register to continue.</p>
+  <p>Welcome, <%= user.name %>. Manage your <a href="/my-events">events</a>, view the <a href="/dashboard">dashboard</a> or start <a href="/checkin">check-in</a>.</p>
 <% } %>
 <%- include('partials/footer') %>

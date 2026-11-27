@@ -1,6 +1,7 @@
 const express = require('express');
 const { requireRole } = require('../middleware/auth');
 const { listUpcomingEvents, getEvent, bookTicket, listTicketsForAttendee } = require('../services/bookings');
+const { canCancel } = require('../services/cancellation');
 
 const router = express.Router();
 
@@ -30,7 +31,10 @@ router.post('/events/:id/reserve', requireRole('attendee'), (req, res) => {
 });
 
 router.get('/my-tickets', requireRole('attendee'), (req, res) => {
-  const tickets = listTicketsForAttendee(req.app.locals.db, req.session.user.id);
+  const tickets = listTicketsForAttendee(req.app.locals.db, req.session.user.id).map((ticket) => ({
+    ...ticket,
+    canCancel: ticket.status === 'active' && canCancel(ticket.event_datetime),
+  }));
   res.render('my-tickets', { tickets });
 });
 

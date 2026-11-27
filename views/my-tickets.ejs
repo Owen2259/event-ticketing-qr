@@ -9,9 +9,18 @@
     <p><%= formatDate(ticket.event_datetime) %> &middot; <%= ticket.venue %></p>
     <p><%= ticket.ticket_type %> ticket &middot; <span class="badge <%= ticket.status %>"><%= ticket.status %></span></p>
     <p>Code: <strong><%= ticket.code %></strong></p>
+
     <% if (ticket.status === 'active') { %>
       <img class="qr" src="/tickets/<%= ticket.code %>/qr.png" alt="QR code for ticket <%= ticket.code %>">
       <a href="/tickets/<%= ticket.code %>/qr.png" download="ticket-<%= ticket.code %>.png">Download QR code</a>
+
+      <% if (ticket.canCancel) { %>
+        <form method="post" action="/tickets/<%= ticket.code %>/cancel" onsubmit="return confirm('Cancel this ticket?');">
+          <button type="submit" class="secondary">Cancel ticket</button>
+        </form>
+      <% } else { %>
+        <p class="note">Cancellation is closed (less than 48 hours before the event).</p>
+      <% } %>
     <% } %>
   </div>
 <% }) %>

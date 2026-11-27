@@ -7,6 +7,7 @@ const eventRoutes = require('./routes/events');
 const bookingRoutes = require('./routes/bookings');
 const ticketRoutes = require('./routes/tickets');
 const checkinRoutes = require('./routes/checkin');
+const dashboardRoutes = require('./routes/dashboard');
 
 function createApp(db) {
   const app = express();
@@ -35,6 +36,18 @@ function createApp(db) {
   app.use('/', bookingRoutes);
   app.use('/', ticketRoutes);
   app.use('/', checkinRoutes);
+  app.use('/', dashboardRoutes);
+
+  // Anything that matched no route
+  app.use((req, res) => {
+    res.status(404).render('error', { message: 'Page not found.' });
+  });
+
+  // Anything that went wrong unexpectedly
+  app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).render('error', { message: 'Something went wrong. Please try again.' });
+  });
 
   return app;
 }
